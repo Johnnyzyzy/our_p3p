@@ -1,10 +1,20 @@
+
 # Our_p3p
 Codes (encrypted using MATLAB pcode()) and demos for our p3p method, the codes will be released after being acceptted.
 
 # Thirdparty Methods (Folder "P3P_tool" )
-The thirdparty p3p methods are from the p3p-toolbox provided by Gaku Nakano [link](https://github.com/g9nkn/p3p_problem). 
+The thirdparty p3p methods are from the p3p-toolbox provided by Gaku Nakano. Due to the license, we do not plan to provide the toolbox here.  You can download it from [link](https://github.com/g9nkn/p3p_problem) and then decompress it into the "P3P_tool" folder. After that, you will be able to run the following demos:
+ - demo_test_noise_robustness
+ - demo_test_numerical_stability_rt
+ - demo_test_runtime
 
-The folder is almost a copy of that toolbox, except for a few lines added by us in the Function "p3p_gao" to prevent NAN-error occured in real experiments
+To run the "demo_test_ETH3D_VGG", you also need to add the following codes after Lines 209 (i.e., after `Qs = reshape(Qs,4,4);`) in the "p3p_gao" function of the toolbox to avoid NAN-error:
+
+    if all(all(isnan(Qs)))
+        R = nan(3);  t = nan(3,1);
+        return
+    end
+
 
 # Demo Results (Folder "demo_results")
 ## Numerical Stability
@@ -30,4 +40,3 @@ Ours experiment environments:
 ![runtime](https://github.com/Johnnyzyzy/our_p3p/blob/main/demo_results/runtime.png)
 ![runtime-gif1](https://github.com/Johnnyzyzy/our_p3p/blob/main/demo_results/runtime1.gif)
 ![runtime-gif2](https://github.com/Johnnyzyzy/our_p3p/blob/main/demo_results/runtime2.gif)
-
